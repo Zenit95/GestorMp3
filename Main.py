@@ -1,12 +1,12 @@
 #!/usr/bin/python
 # -*- coding:utf-8 -*-
 
-import os, Repo
+import os, Repo, sys
 
  
 options = ["Añadir nueva cancion", "Listar estilos", "Listar canciones - Autor", "Listar canciones - Estilo",
 			 "Listar todas las canciones", "Eliminar cancion", "Salir"]
-functions = [Repo.selectAll]
+functions = [Repo.addSong, Repo.showStyles, Repo.showAuthorSongs, Repo.showStyleSongs, Repo.selectAll, Repo.deleteSong, exit]
 
 
 
@@ -27,18 +27,20 @@ def menu():
 
  	printMenu()
 
- 
+def exit():
+	global cur, conn
+	cur.close()
+	conn.close()
 
 while True:
 
 	menu()	
 
- 	opcionMenu = input("inserta un numero valor >> ")
-
+ 	opcionMenu = input("Opcion seleccionada >> ")
 
 	print("\n" + options[opcionMenu-1])
 	
-	print functions[opcionMenu-1]()
+	functions[opcionMenu-1]()
 
 	raw_input()
 
