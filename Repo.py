@@ -19,6 +19,7 @@ def addSong():
 	style = raw_input("\n\tIntroduzca el estilo\t")
 	sql = "INSERT INTO MP3 (titulo, interprete, duracion, estilo) VALUES ((?), (?), (?), (?));"
 	song = cur.execute(sql, (title, author, time, style))
+	conn.commit()
 	print("\nCanción añadida")
 
 def showStyles():
